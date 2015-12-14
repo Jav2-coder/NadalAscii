@@ -2,22 +2,24 @@ package net.javierjimenez;
 
 public class Comprobar {
 
-	private CharSequence Noel = "*<]:-DOo";
-	private CharSequence Reno = ">:o)";
-	private CharSequence Elfo = "<]:-D";
+	private String Noel = "*<]:-DOo";
+	private String Reno = ">:o)";
+	private String Elfo = "<]:-D";
+	private String casa;
 
-	public Comprobar() {
+	public Comprobar(String c) {
 
+		casa = c;
+		
 	}
 
-	public String visitasCasas(String casa) {
+	public String visitasCasas() {
 
 		String quienVisita = "";
-		int papaNoel = 0;
-		int renos = 0;
-		int elfos = 0;
 
-		
+		int papaNoel = busquedaNavidad(Noel);
+		int renos = busquedaNavidad(Reno);
+		int elfos = busquedaNavidad(Elfo);
 		
 		if (papaNoel == 0 && renos == 0 && elfos == 0) {
 			
@@ -28,6 +30,7 @@ public class Comprobar {
 			if (papaNoel > 0) {
 
 				quienVisita = "Papa Noel(" + papaNoel + ") ";
+				elfos = elfos - papaNoel;
 
 			}
 			if (renos > 0) {
@@ -42,7 +45,21 @@ public class Comprobar {
 			}
 		}
 		
-		System.out.println(papaNoel + " " + renos + " " + elfos);
 		return quienVisita;
+	}
+
+	private int busquedaNavidad(String busqueda) {
+		
+		int contador = 0;
+		int posicio = 0;
+		int pos = 0;
+		
+		while(pos >= 0){
+			pos = casa.indexOf(busqueda, posicio);
+			posicio = pos + busqueda.length();
+			
+			if(pos > 0) contador++;
+		}
+		return contador;
 	}
 }

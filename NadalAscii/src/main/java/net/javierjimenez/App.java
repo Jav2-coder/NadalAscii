@@ -15,7 +15,7 @@ public class App {
 	public static void main(String[] args) {
 		
 		BufferedReader br = null;
-		Comprobar casas = new Comprobar();
+		Comprobar casas;
 
 		try {
 
@@ -25,7 +25,9 @@ public class App {
 
 			while ((casa = br.readLine()) != null) {
 
-				System.out.println(casas.visitasCasas(casa));
+				casas = new Comprobar(casa);
+				
+				System.out.println(casas.visitasCasas());
 			}
 
 		} catch (IOException e) {
